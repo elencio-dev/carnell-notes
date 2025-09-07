@@ -1,26 +1,343 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Solar Dusk Theme Color Palette */
+  --background: #fdfaf6;
+  --foreground: #333333;
+  --card: #ffffff;
+  --card-foreground: #333333;
+  --popover: #ffffff;
+  --popover-foreground: #333333;
+  --primary: #7a4a2a;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f0e8;
+  --secondary-foreground: #333333;
+  --muted: #f5f0e8;
+  --muted-foreground: #888888;
+  --accent: #7a4a2a;
+  --accent-foreground: #ffffff;
+  --destructive: #d2691e;
+  --destructive-foreground: #ffffff;
+  --border: #e0e0e0;
+  --input: #ffffff;
+  --ring: rgba(122, 74, 42, 0.3);
+  --chart-1: #7a4a2a;
+  --chart-2: #d2b48c;
+  --chart-3: #d2691e;
+  --chart-4: #888888;
+  --chart-5: #cd853f;
+  --radius: 0.375rem;
+  --sidebar: #fdfaf6;
+  --sidebar-foreground: #333333;
+  --sidebar-primary: #7a4a2a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d2b48c;
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: rgba(122, 74, 42, 0.3);
+  
+  /* Solar Dusk specific colors */
+  --solar-dusk-cream: #fdfaf6;
+  --solar-dusk-light-cream: #f5f0e8;
+  --solar-dusk-dark-brown: #7a4a2a;
+  --solar-dusk-medium-brown: #8b4513;
+  --solar-dusk-light-brown: #d2b48c;
+  --solar-dusk-orange: #d2691e;
+  --solar-dusk-tan: #cd853f;
+  --solar-dusk-gray: #888888;
+  --solar-dusk-dark-gray: #333333;
+  --solar-dusk-border: #e0e0e0;
+  
+  /* Tag colors */
+  --tag-important: #7a4a2a;
+  --tag-important-foreground: #ffffff;
+  --tag-meeting: #d2b48c;
+  --tag-meeting-foreground: #333333;
+  --tag-work: #d2b48c;
+  --tag-work-foreground: #333333;
+}
+
+.dark {
+  --background: #2d1b0e;
+  --foreground: #f5f0e8;
+  --card: #3d2815;
+  --card-foreground: #f5f0e8;
+  --popover: #3d2815;
+  --popover-foreground: #f5f0e8;
+  --primary: #d2b48c;
+  --primary-foreground: #2d1b0e;
+  --secondary: #4a2c17;
+  --secondary-foreground: #f5f0e8;
+  --muted: #4a2c17;
+  --muted-foreground: #b8a082;
+  --accent: #d2b48c;
+  --accent-foreground: #2d1b0e;
+  --destructive: #cd853f;
+  --destructive-foreground: #2d1b0e;
+  --border: #5a3a1f;
+  --input: #3d2815;
+  --ring: rgba(210, 180, 140, 0.3);
+  --chart-1: #d2b48c;
+  --chart-2: #cd853f;
+  --chart-3: #d2691e;
+  --chart-4: #b8a082;
+  --chart-5: #8b4513;
+  --sidebar: #2d1b0e;
+  --sidebar-foreground: #f5f0e8;
+  --sidebar-primary: #d2b48c;
+  --sidebar-primary-foreground: #2d1b0e;
+  --sidebar-accent: #4a2c17;
+  --sidebar-accent-foreground: #f5f0e8;
+  --sidebar-border: #5a3a1f;
+  --sidebar-ring: rgba(210, 180, 140, 0.3);
 }
 
 @theme inline {
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-geist-mono);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-poppins), ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Notion typography system */
+  .notion-text {
+    @apply text-[15px] leading-[1.5] text-foreground;
+  }
+  
+  .notion-text-small {
+    @apply text-[12px] leading-[1.3] text-muted-foreground;
+  }
+  
+  .notion-text-large {
+    @apply text-[18px] leading-[1.4] text-foreground;
+  }
+  
+  .notion-heading-1 {
+    @apply text-[32px] leading-[1.2] font-semibold text-foreground;
+  }
+  
+  .notion-heading-2 {
+    @apply text-[24px] leading-[1.3] font-semibold text-foreground;
+  }
+  
+  .notion-heading-3 {
+    @apply text-[20px] leading-[1.3] font-semibold text-foreground;
+  }
+  
+  .notion-heading-4 {
+    @apply text-[16px] leading-[1.4] font-semibold text-foreground;
+  }
+  
+  .notion-code {
+    @apply text-[14px] leading-[1.4] font-mono bg-muted px-1.5 py-0.5 rounded text-foreground;
+  }
+  
+  /* Notion spacing system */
+  .notion-padding-small {
+    @apply p-2;
+  }
+  
+  .notion-padding-medium {
+    @apply p-4;
+  }
+  
+  .notion-padding-large {
+    @apply p-6;
+  }
+  
+  .notion-margin-small {
+    @apply m-2;
+  }
+  
+  .notion-margin-medium {
+    @apply m-4;
+  }
+  
+  .notion-margin-large {
+    @apply m-6;
+  }
+  
+  /* Notion hover states */
+  .notion-hover {
+    @apply transition-colors duration-150 ease-in-out;
+  }
+  
+  .notion-hover:hover {
+    @apply bg-muted/50;
+  }
+  
+  /* Notion focus states */
+  .notion-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent;
+  }
+  
+  /* Notion button styles */
+  .notion-button {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+  }
+  
+  .notion-button-primary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-accent text-accent-foreground hover:bg-accent/90 h-9 px-3;
+  }
+  
+  .notion-button-secondary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary text-secondary-foreground hover:bg-secondary/80 h-9 px-3;
+  }
+  
+  .notion-button-ghost {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background hover:bg-muted hover:text-muted-foreground h-9 px-3;
+  }
+  
+  /* Solar Dusk specific utilities */
+  .solar-dusk-bg {
+    background-color: var(--solar-dusk-cream);
+  }
+  
+  .solar-dusk-card {
+    background-color: var(--solar-dusk-light-cream);
+  }
+  
+  .solar-dusk-accent {
+    background-color: var(--solar-dusk-dark-brown);
+    color: var(--solar-dusk-cream);
+  }
+  
+  .solar-dusk-tag-important {
+    background-color: var(--tag-important);
+    color: var(--tag-important-foreground);
+  }
+  
+  .solar-dusk-tag-secondary {
+    background-color: var(--tag-meeting);
+    color: var(--tag-meeting-foreground);
+  }
+  
+  /* Enhanced animations and effects */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .scale-hover {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .scale-hover:hover {
+    transform: scale(1.02);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(122, 74, 42, 0.1);
+  }
+  
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(122, 74, 42, 0.2);
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent)/80;
+  }
+  
+  /* Focus ring improvements */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/30 focus:ring-offset-2;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent)/70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
